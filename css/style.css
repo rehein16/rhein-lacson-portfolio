@@ -1,7 +1,5 @@
 /* ============================================================
-   RHEINEL FRED M. LACSON — Portfolio v3.0
-   Aesthetic: Dark editorial · Electric blue · Bold typography
-   Fonts: Bebas Neue (display) + DM Sans (body) + JetBrains Mono
+   RHEINEL FRED M. LACSON — Portfolio
    ============================================================ */
 
    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap');
@@ -900,9 +898,7 @@
    
    /* Gradient overlays for visual appeal */
    .proj-visual-overlay {
-     position: absolute; inset: 0; z-index: 1;
-     background: linear-gradient(to bottom, transparent 50%, rgba(8,8,8,0.6) 100%);
-     pointer-events: none;
+     display: none;
    }
    
    .project-full-info {}
@@ -1831,3 +1827,497 @@
      .nav-links.open .menu-avail     { transition-delay: 0.36s; }
      .nav-links.open .menu-socials   { transition-delay: 0.40s; }
    }
+/* ══════════════════════════════════════════════
+   GLITCH EFFECT — RHEIN. hero name
+══════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════
+   GLITCH — RHEIN. hero name  (orange + purple)
+══════════════════════════════════════════════ */
+
+/* Main element: multi-movement idle — skew, scale, shake, clip, float */
+/* ══════════════════════════════════════════════
+   RHEIN — Elegant Shimmer Effect
+   Soft light sweep on idle · Glow lift on hover
+   No jarring motion, no eye strain — just class.
+══════════════════════════════════════════════ */
+
+/* The shimmer sweep — a gradient moves L→R */
+@keyframes shimmer-sweep {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* Subtle breathing glow pulse on idle */
+@keyframes name-breathe {
+  0%, 100% { text-shadow:
+    0 0 40px rgba(79,142,247,0.15),
+    0 0 80px rgba(79,142,247,0.05); }
+  50%       { text-shadow:
+    0 0 60px rgba(147,197,253,0.28),
+    0 0 120px rgba(79,142,247,0.10),
+    0 2px 0  rgba(79,142,247,0.08); }
+}
+
+/* Hover: individual letter float — applied via JS */
+@keyframes letter-lift {
+  0%, 100% { transform: translateY(0);   opacity: 1; }
+  50%       { transform: translateY(-6px); opacity: 0.88; }
+}
+
+.shimmer-text {
+  position: relative;
+  display: inline-block;
+  /* Breathing glow — slow, calming */
+  animation: name-breathe 4s ease-in-out infinite;
+  cursor: default;
+  /* Shimmer painted as a background clipped to text */
+  background: linear-gradient(
+    105deg,
+    var(--white)       0%,
+    var(--white)       38%,
+    rgba(200,225,255,0.95) 44%,
+    rgba(255,255,255,1)    50%,
+    rgba(200,225,255,0.95) 56%,
+    var(--white)       62%,
+    var(--white)       100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer-sweep 5s linear infinite, name-breathe 4s ease-in-out infinite;
+}
+
+/* The accent dot inherits colour naturally — give it the blue back */
+.shimmer-text .accent {
+  -webkit-text-fill-color: var(--blue-ll);
+  display: inline-block;
+}
+
+/* Hover: pause shimmer, ignite a strong glow */
+.shimmer-text:hover {
+  animation: none;
+  -webkit-text-fill-color: transparent;
+  background: linear-gradient(
+    105deg,
+    rgba(147,197,253,0.9) 0%,
+    rgba(255,255,255,1)   35%,
+    rgba(147,197,253,1)   55%,
+    rgba(255,255,255,1)   75%,
+    rgba(147,197,253,0.9) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  filter: drop-shadow(0 0 18px rgba(147,197,253,0.55))
+          drop-shadow(0 0 40px rgba(79,142,247,0.25));
+  transition: filter 0.4s ease;
+}
+
+
+/* ══════════════════════════════════════════════
+   STACKED CARD DECK — Featured Projects
+══════════════════════════════════════════════ */
+.stacked-deck-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 60px;
+  align-items: center;
+  margin-top: 48px;
+}
+
+/* LEFT — card stack */
+.stacked-deck {
+  position: relative;
+  height: 520px;
+}
+
+.stack-card {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--black-2, #0d1224);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.5s ease,
+              box-shadow 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stack depth positions — cards peek ABOVE, scrambled fan like a real held deck */
+.stack-card:nth-child(1) {
+  transform: translateY(-28px) rotate(-6deg) scale(0.92);
+  opacity: 1;
+  z-index: 1;
+  transform-origin: bottom center;
+}
+.stack-card:nth-child(2) {
+  transform: translateY(-14px) rotate(-3deg) scale(0.96);
+  opacity: 1;
+  z-index: 2;
+  transform-origin: bottom center;
+}
+.stack-card:nth-child(3),
+.stack-card.stack-card--top {
+  transform: translateY(0) rotate(0deg) scale(1);
+  opacity: 1;
+  z-index: 3;
+  transform-origin: bottom center;
+  box-shadow: 0 24px 80px rgba(79,142,247,0.18), 0 8px 40px rgba(0,0,0,0.55);
+}
+
+/* Fly-out animation */
+.stack-card.fly-out {
+  transform: translateY(-80px) translateX(-60px) rotate(-8deg) scale(0.82) !important;
+  opacity: 0 !important;
+  transition: transform 0.48s cubic-bezier(0.4, 0, 1, 1), opacity 0.38s ease !important;
+  z-index: 10 !important;
+  pointer-events: none;
+}
+
+/* Browser chrome bar */
+.stack-card-browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 16px;
+  background: rgba(255,255,255,0.035);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.62rem;
+  flex-shrink: 0;
+}
+.stack-card-browser-bar span:not(.proj-browser-url) {
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: inline-block;
+}
+.stack-card-browser-bar .proj-browser-url {
+  color: rgba(255,255,255,0.28);
+  font-family: var(--ff-mono);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  margin-left: 6px;
+}
+
+/* Full-height screenshot */
+.stack-card-img {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+.stack-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  display: block;
+  transition: transform 6s ease;
+}
+.stack-card:nth-child(3) .stack-card-img img,
+.stack-card.stack-card--top .stack-card-img img {
+  animation: slow-scroll 8s ease-in-out infinite alternate;
+}
+@keyframes slow-scroll {
+  from { object-position: top; }
+  to   { object-position: bottom; }
+}
+
+/* proj-num & live badge positioning on image cards */
+.stack-card .proj-num {
+  position: absolute;
+  bottom: 16px;
+  left: 20px;
+  font-family: var(--ff-mono);
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: rgba(255,255,255,0.06);
+  line-height: 1;
+  pointer-events: none;
+  z-index: 2;
+}
+.stack-card .proj-live-badge {
+  position: absolute;
+  top: 52px;
+  right: 16px;
+  background: rgba(16,185,129,0.15);
+  border: 1px solid rgba(16,185,129,0.35);
+  color: #34d399;
+  font-family: var(--ff-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 4;
+}
+
+/* RIGHT — info panel */
+.stack-info-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: center;
+}
+
+.stack-info-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.stack-info-content.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.stack-info-content.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stack-info-category {
+  font-family: var(--ff-mono);
+  font-size: 0.65rem;
+  color: var(--blue-ll, #60a5fa);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.stack-info-title {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1;
+  color: var(--white-1, #fff);
+}
+.stack-info-desc {
+  font-size: 0.92rem;
+  color: var(--white-3, rgba(255,255,255,0.55));
+  line-height: 1.7;
+  margin: 0;
+}
+.stack-info-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+.stack-info-links {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+/* Controls */
+.stack-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.stack-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--ff-mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.stack-hint svg { opacity: 0.45; flex-shrink: 0; }
+
+.stack-btn {
+  display: flex;
+  flex-direction: column;
+  background: var(--blue, #4f8ef7);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 20px rgba(79,142,247,0.3);
+  width: 100%;
+}
+.stack-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 32px rgba(79,142,247,0.5);
+}
+.stack-btn:active { transform: translateY(0); }
+
+.stack-btn-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 22px;
+  color: #fff;
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.stack-btn-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.2s ease;
+}
+.stack-btn:hover .stack-btn-arrow { transform: translateX(5px); }
+
+.stack-progress {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.18);
+}
+.stack-progress-fill {
+  display: block;
+  height: 100%;
+  background: rgba(255,255,255,0.75);
+  width: 33.33%;
+  transition: width 0.4s ease;
+}
+
+.stack-dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.stack-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.stack-dot.active {
+  background: var(--blue, #4f8ef7);
+  transform: scale(1.35);
+}
+
+/* ══════════════════════════════════════════════
+   FLASHLIGHT CURSOR — project photo hover
+══════════════════════════════════════════════ */
+.photo-flashlight {
+  position: relative;
+  overflow: hidden;
+  cursor: none;
+}
+.photo-flashlight::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 9, 24, 0.82);
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  opacity: 0;
+}
+
+/* Stack card images should NOT use the dark overlay */
+.stack-card-img.photo-flashlight::after {
+  background: rgba(5, 9, 24, 0.55);
+  opacity: 0;
+}
+.photo-flashlight .flashlight-beam {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.18) 0%, rgba(79,142,247,0.08) 40%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+  mix-blend-mode: screen;
+}
+.photo-flashlight:hover::after { opacity: 1; }
+.photo-flashlight:hover .flashlight-beam { opacity: 1; }
+
+/* Custom cursor dot for flashlight areas */
+.flashlight-cursor {
+  position: fixed;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 0 12px 4px rgba(79,142,247,0.6), 0 0 24px 8px rgba(79,142,247,0.2);
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease, width 0.15s ease, height 0.15s ease;
+  mix-blend-mode: screen;
+}
+.flashlight-cursor.active { opacity: 1; }
+
+/* ══════════════════════════════════════════════
+   MAGNET EFFECT — photo wrappers
+══════════════════════════════════════════════ */
+.magnet-photo {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* Reverse magnet — projects page card box repel effect */
+.reverse-magnet-card {
+  transition: transform 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* Flashlight on project browser screens: lighter dark overlay */
+.project-full-visual .proj-browser-screen.photo-flashlight::after {
+  background: rgba(5, 9, 24, 0.65);
+  opacity: 0;
+}
+.project-full-visual .proj-browser-screen.photo-flashlight:hover::after {
+  opacity: 1;
+}
+
+
+@media (max-width: 900px) {
+  .stacked-deck-wrapper {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .stacked-deck { height: 420px; }
+  .stack-info-panel { gap: 28px; }
+  .stack-controls { flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .stack-btn { width: auto; min-width: 180px; }
+}
+@media (max-width: 560px) {
+  .stacked-deck { height: 340px; }
+  .stack-hint { display: none; }
+}
+/* ══════════════════════════════════════════════
+   SCROLL-REVEAL — sections fade+slide in
+══════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s cubic-bezier(0.4,0,0.2,1), transform 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ── Celestial fade overlay hint (top-only) ── */
+.sky-fade-mask {
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 18px;
+  background: linear-gradient(to bottom, var(--black) 0%, transparent 100%);
+  pointer-events: none; z-index: 1;
+}

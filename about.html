@@ -4,10 +4,10 @@
   <meta charset="UTF-8"/>
   <link rel="icon" type="image/png" href="assets/images/rl-logo-transparent.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="About Rhein Lacson — IT Student & Front-End Developer at Holy Angel University, Philippines. Background, skills, and interests."/>
+  <meta name="description" content="About Rhein Lacson — aspiring front-end developer and 3rd-year B.S. IT student at Holy Angel University. Background, skills, and interests."/>
   <meta name="keywords" content="Rhein Lacson about, IT student Holy Angel University, front-end developer Philippines, web developer bio"/>
   <meta property="og:title" content="About — Rhein Lacson"/>
-  <meta property="og:description" content="IT Student & Front-End Developer. Background, technical skills, certifications, and personal interests."/>
+  <meta property="og:description" content="Aspiring front-end developer & IT student. Background, projects, certifications, and personal interests."/>
   <meta property="og:image" content="assets/images/rl-logo-new.png"/>
   <meta property="og:type" content="website"/>
   <title>About — RL</title>
@@ -21,6 +21,9 @@
       gap: 80px;
       align-items: start;
     }
+
+    /* ── Editorial full-bleed layout ── */
+    .about-page-grid { display: block !important; }
 
     /* BIO BLOCK */
     .about-bio-eyebrow {
@@ -112,76 +115,356 @@
     }
 
     /* RIGHT COLUMN — photo */
-    .about-photo-col { position: relative; }
-    .about-photo-wrap {
+    /* ══════════════════════════════════════════════════════
+       EDITORIAL HERO SECTION — full width, person centred
+    ══════════════════════════════════════════════════════ */
+
+    /* Full-width editorial section, no container constraint */
+    .about-editorial {
       position: relative;
-      border-radius: 14px;
+      width: 100%;
       overflow: hidden;
-      border: 1px solid var(--border);
-      aspect-ratio: 3/4;
-      max-height: 520px;
+      padding: 0;
     }
-    .about-photo-wrap img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: top;
-      display: block;
+
+    /* Giant heading above */
+    .editorial-headline {
+      text-align: center;
+      padding: 80px 40px 0;
+      position: relative;
+      z-index: 2;
     }
-    .about-photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(5,9,24,0.7) 0%, transparent 50%);
-    }
-    .about-photo-tag {
-      position: absolute;
-      bottom: 20px; left: 20px; right: 20px;
-      padding: 14px 18px;
-      background: rgba(5,9,24,0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-    }
-    .about-photo-tag-name {
+    .editorial-headline-main {
       font-family: var(--ff-display);
-      font-size: 1rem;
+      font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+      color: var(--white);
+      line-height: 1.05;
+      margin: 0 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .editorial-headline-main em {
+      font-style: normal;
+      color: var(--blue-ll);
+    }
+    .editorial-sub {
+      font-family: var(--ff-mono);
+      font-size: 0.75rem;
+      color: var(--white-3);
+      letter-spacing: 0.08em;
+      margin: 0;
+    }
+
+    /* Photo centred, large, bleeding off edges naturally */
+    .editorial-photo-wrap {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      margin-top: -20px;
+      z-index: 1;
+    }
+    .editorial-photo-wrap img {
+      width: clamp(240px, 34%, 420px);
+      height: auto;
+      display: block;
+      /* Dark bg becomes invisible against the page */
+      mix-blend-mode: lighten;
+      filter: contrast(1.05) brightness(1.0) saturate(0.95);
+      position: relative;
+      z-index: 2;
+      animation: editFloat 8s ease-in-out infinite;
+    }
+    @keyframes editFloat {
+      0%,100% { transform: translateY(0px); }
+      45%      { transform: translateY(-12px); }
+    }
+
+    /* Radial glow behind person */
+    .editorial-glow {
+      position: absolute;
+      left: 50%;
+      top: 30%;
+      transform: translate(-50%, -50%);
+      width: 38%;
+      height: 50%;
+      background: radial-gradient(ellipse at 50% 60%,
+        rgba(79,142,247,0.13) 0%,
+        rgba(147,51,234,0.07) 45%,
+        transparent 72%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 1;
+      animation: glowPulse 6s ease-in-out infinite alternate;
+    }
+    @keyframes glowPulse {
+      from { opacity: 0.6; transform: translate(-50%,-50%) scale(0.92); }
+      to   { opacity: 1;   transform: translate(-50%,-50%) scale(1.08); }
+    }
+
+    /* Bottom-of-photo info strip — name left, facts right */
+    .editorial-info-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 0 clamp(24px, 5vw, 80px) 60px;
+      margin-top: -40px;
+      position: relative;
+      z-index: 3;
+      gap: 40px;
+    }
+    .editorial-name-block {
+      flex: 0 0 auto;
+    }
+    .editorial-name {
+      font-family: var(--ff-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.8rem);
       color: var(--white);
       display: block;
-      margin-bottom: 2px;
+      letter-spacing: 0.01em;
+      margin-bottom: 5px;
     }
-    .about-photo-tag-role {
+    .editorial-role {
       font-family: var(--ff-mono);
       font-size: 0.55rem;
       color: var(--blue-ll);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
-    .about-floating-badge {
-      position: absolute;
-      top: 24px; right: -16px;
-      background: var(--black-3);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 12px 16px;
+    .editorial-role::before {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: #0ACF83;
+      box-shadow: 0 0 6px #0ACF83;
+      animation: pulse 2s infinite;
+    }
+    .editorial-facts {
+      display: flex;
+      gap: clamp(24px, 4vw, 60px);
+      align-items: flex-end;
+    }
+    .editorial-fact {
       text-align: center;
     }
-    .about-floating-badge-num {
+    .editorial-fact-num {
       font-family: var(--ff-display);
-      font-size: 1.6rem;
-      color: var(--blue-ll);
-      line-height: 1;
+      font-size: clamp(1.6rem, 3vw, 2.8rem);
+      color: var(--white);
       display: block;
+      line-height: 1;
+      margin-bottom: 4px;
     }
-    .about-floating-badge-label {
+    .editorial-fact-label {
       font-family: var(--ff-mono);
-      font-size: 0.48rem;
+      font-size: 0.5rem;
       color: var(--white-3);
-      letter-spacing: 0.1em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       display: block;
-      margin-top: 4px;
     }
 
-    /* SKILLS SECTION */
+    /* ── LEVELLED-UP BOTTOM SECTION ─────────────────────── */
+
+    /* Full-width rule with fading ends */
+    .editorial-rule {
+      border: none;
+      height: 1px;
+      background: linear-gradient(to right,
+        transparent 0%,
+        rgba(79,142,247,0.35) 20%,
+        rgba(79,142,247,0.35) 80%,
+        transparent 100%);
+      margin: 0 clamp(24px, 5vw, 80px);
+      position: relative;
+    }
+    /* Tiny glowing dot on the rule */
+    .editorial-rule::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--blue-ll);
+      box-shadow: 0 0 12px 4px rgba(79,142,247,0.5);
+    }
+
+    /* Bio grid — numbered cards with hover lift */
+    .editorial-bio-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1px;
+      margin: 52px clamp(24px, 5vw, 80px) 0;
+      background: rgba(79,142,247,0.08);
+      border: 1px solid rgba(79,142,247,0.1);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+    .editorial-bio-col {
+      position: relative;
+      padding: 36px 32px 40px;
+      background: rgba(5,9,24,0.6);
+      backdrop-filter: blur(8px);
+      transition: background 0.3s ease;
+      overflow: hidden;
+    }
+    .editorial-bio-col:hover {
+      background: rgba(10,15,40,0.9);
+    }
+    /* Animated gradient top border on hover */
+    .editorial-bio-col::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blue), var(--blue-ll), rgba(147,51,234,0.8));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    }
+    .editorial-bio-col:hover::before { transform: scaleX(1); }
+    /* Large ghost number */
+    .editorial-bio-col::after {
+      content: attr(data-num);
+      position: absolute;
+      bottom: -10px; right: 16px;
+      font-family: var(--ff-display);
+      font-size: 5.5rem;
+      font-weight: 900;
+      color: rgba(79,142,247,0.055);
+      line-height: 1;
+      pointer-events: none;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .editorial-bio-col:hover::after {
+      color: rgba(79,142,247,0.1);
+      transform: translateY(-4px);
+    }
+    .editorial-bio-label {
+      font-family: var(--ff-mono);
+      font-size: 0.5rem;
+      color: rgba(79,142,247,0.7);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .editorial-bio-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px; height: 1px;
+      background: linear-gradient(to right, var(--blue-ll), transparent);
+      flex-shrink: 0;
+    }
+    .editorial-bio-text {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.95;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .editorial-bio-text strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+    /* Meta strip — table-like, sharp */
+    .editorial-meta {
+      margin: 32px clamp(24px, 5vw, 80px) 0;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid rgba(79,142,247,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .editorial-meta-item {
+      padding: 18px 22px;
+      border-right: 1px solid rgba(79,142,247,0.08);
+      position: relative;
+      transition: background 0.25s ease;
+    }
+    .editorial-meta-item:last-child { border-right: none; }
+    .editorial-meta-item:hover { background: rgba(79,142,247,0.05); }
+    .editorial-meta-item strong {
+      font-family: var(--ff-mono);
+      font-size: 0.45rem;
+      color: rgba(79,142,247,0.6);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 400;
+    }
+    .editorial-meta-item span,
+    .editorial-meta-item a {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      display: block;
+      transition: color 0.2s;
+    }
+    .editorial-meta-item a:hover { color: var(--blue-ll); }
+
+    /* CTA — more editorial, asymmetric */
+    .editorial-cta {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin: 44px clamp(24px, 5vw, 80px) 0;
+      padding-bottom: 80px;
+    }
+    /* Decorative line between CTA and edge */
+    .editorial-cta-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, rgba(79,142,247,0.2), transparent);
+    }
+    .editorial-cta-tagline {
+      font-family: var(--ff-mono);
+      font-size: 0.52rem;
+      color: rgba(255,255,255,0.2);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 860px) {
+      .editorial-bio-grid {
+        grid-template-columns: 1fr;
+        margin: 36px clamp(16px,4vw,40px) 0;
+      }
+      .editorial-meta {
+        grid-template-columns: 1fr 1fr;
+        margin: 24px clamp(16px,4vw,40px) 0;
+      }
+      .editorial-meta-item { border-right: 1px solid rgba(79,142,247,0.08); }
+      .editorial-meta-item:nth-child(2n) { border-right: none; }
+      .editorial-meta-item:nth-child(n+3) { border-top: 1px solid rgba(79,142,247,0.08); }
+      .editorial-cta {
+        flex-wrap: wrap;
+        margin: 32px clamp(16px,4vw,40px) 0;
+      }
+      .editorial-cta-line, .editorial-cta-tagline { display: none; }
+    }
+
+    /* Hide old photo col */
+    .about-photo-col { display: none !important; }
+    .about-page-grid > div:first-child { display: none !important; }
+
+    @media (max-width: 860px) {
+      .editorial-bio-grid { grid-template-columns: 1fr; gap: 28px; }
+      .editorial-info-strip { flex-direction: column; align-items: flex-start; gap: 24px; margin-top: -40px; }
+      .editorial-facts { gap: 28px; }
+      .editorial-headline-main { font-size: clamp(2rem, 8vw, 3.2rem); }
+    }
+
+    /* SKILLS SECTION */    /* SKILLS SECTION */
     .skills-section-title {
       font-family: var(--ff-display);
       font-size: 1.5rem;
@@ -237,54 +520,148 @@
     }
 
     /* CERT HIGHLIGHTS ON ABOUT */
-    .about-cert-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .about-cert-card {
-      padding: 16px;
-      background: var(--black-3);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: border-color 0.2s, transform 0.2s;
+    /* ══════════════════════════════════════
+       TIMELINE — coding journey
+    ══════════════════════════════════════ */
+    .timeline-wrap {
       position: relative;
-      overflow: hidden;
+      margin-top: 56px;
+      padding-left: 0;
     }
-    .about-cert-card::before {
-      content: '';
+
+    /* Vertical spine */
+    .timeline-spine {
       position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--blue), var(--blue-ll));
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s;
+      left: 160px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom,
+        transparent 0%,
+        rgba(79,142,247,0.4) 8%,
+        rgba(79,142,247,0.4) 92%,
+        transparent 100%);
     }
-    .about-cert-card:hover { border-color: var(--border-hi); transform: translateY(-2px); }
-    .about-cert-card:hover::before { transform: scaleX(1); }
-    .about-cert-issuer {
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 0 48px;
+      position: relative;
+      margin-bottom: 0;
+      padding-bottom: 56px;
+    }
+    .timeline-item:last-child { padding-bottom: 0; }
+
+    /* Year label — left column */
+    .timeline-year {
       font-family: var(--ff-mono);
-      font-size: 0.5rem;
-      color: var(--blue-ll);
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.1em;
+      text-align: right;
+      padding-top: 2px;
+      padding-right: 28px;
+      user-select: none;
+      font-weight: 500;
+    }
+    .timeline-item.is-now .timeline-year {
+      color: rgba(10,207,131,0.9);
+    }
+
+    /* Dot on the spine */
+    .timeline-dot {
+      position: absolute;
+      left: 160px;
+      top: 5px;
+      transform: translateX(-50%);
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--black-2, #0d1224);
+      border: 2px solid rgba(79,142,247,0.5);
+      transition: border-color 0.3s, box-shadow 0.3s;
+      z-index: 1;
+    }
+    .timeline-item:hover .timeline-dot {
+      border-color: var(--blue-ll);
+      box-shadow: 0 0 10px rgba(79,142,247,0.5);
+    }
+    /* Active/current dot */
+    .timeline-item.is-now .timeline-dot {
+      background: var(--blue-ll);
+      border-color: var(--blue-ll);
+      box-shadow: 0 0 0 4px rgba(79,142,247,0.15), 0 0 14px rgba(79,142,247,0.4);
+      animation: nowPulse 2.5s ease-in-out infinite;
+    }
+    @keyframes nowPulse {
+      0%,100% { box-shadow: 0 0 0 4px rgba(79,142,247,0.15), 0 0 14px rgba(79,142,247,0.4); }
+      50%      { box-shadow: 0 0 0 8px rgba(79,142,247,0.08), 0 0 22px rgba(79,142,247,0.6); }
+    }
+
+    /* Content — right column */
+    .timeline-content {
+      padding-left: 36px;
+      border-left: none;
+    }
+    .timeline-tag {
+      font-family: var(--ff-mono);
+      font-size: 0.46rem;
+      color: rgba(147,51,234,0.75);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 8px;
+      background: rgba(147,51,234,0.08);
+      padding: 3px 9px;
+      border-radius: 20px;
+      border: 1px solid rgba(147,51,234,0.2);
+    }
+    .timeline-item.is-now .timeline-tag {
+      color: rgba(10,207,131,0.9);
+      background: rgba(10,207,131,0.08);
+      border-color: rgba(10,207,131,0.25);
+    }
+    .timeline-title {
+      font-family: var(--ff-display);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      color: var(--white);
+      margin: 0 0 10px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+    .timeline-desc {
+      font-size: 0.84rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.85;
+      margin: 0;
+      max-width: 560px;
+    }
+    .timeline-desc strong { color: rgba(255,255,255,0.75); font-weight: 500; }
+
+    /* Skill pills on each entry */
+    .timeline-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 14px;
+    }
+    .timeline-pill {
+      font-family: var(--ff-mono);
+      font-size: 0.44rem;
+      color: rgba(79,142,247,0.7);
+      background: rgba(79,142,247,0.07);
+      border: 1px solid rgba(79,142,247,0.15);
+      padding: 3px 10px;
+      border-radius: 20px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
-    .about-cert-name {
-      font-size: 0.78rem;
-      color: var(--white);
-      line-height: 1.3;
-      font-weight: 600;
-    }
-    .about-cert-year {
-      font-family: var(--ff-mono);
-      font-size: 0.52rem;
-      color: var(--white-3);
+
+    @media (max-width: 640px) {
+      .timeline-spine { left: 90px; }
+      .timeline-item { grid-template-columns: 90px 1fr; gap: 0 28px; }
+      .timeline-dot  { left: 90px; }
+      .timeline-year { padding-right: 20px; font-size: 0.62rem; }
+      .timeline-content { padding-left: 24px; }
     }
 
     /* INTERESTS */
@@ -343,7 +720,8 @@
 
     @media (max-width: 900px) {
       .about-page-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-floating-badge { display: none; }
+      .about-floating-badge { top: 8px; right: 8px; }
+      .about-float-scene { min-height: 420px; }
       .about-cert-grid { grid-template-columns: repeat(2, 1fr); }
       .interests-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -390,115 +768,99 @@
     <div class="container page-hero-inner">
       <span class="eyebrow">02 — Who I Am</span>
       <h1 class="page-title">ABOUT<span style="color:var(--blue-ll)">.</span></h1>
-      <p class="page-subtitle">IT student, front-end developer, and lifelong learner based in the Philippines. Here's the full picture.</p>
+      <p class="page-subtitle">Aspiring front-end developer and lifelong learner — 3rd year B.S. IT at Holy Angel University. Here's the full picture.</p>
     </div>
   </div>
 
-  <!-- BIO + PHOTO -->
-  <section class="section">
-    <div class="container">
-      <div class="about-page-grid">
+  <!-- EDITORIAL BIO SECTION -->
+  <section class="about-editorial reveal">
 
-        <!-- LEFT — Bio -->
-        <div>
-          <span class="about-bio-eyebrow reveal">Personal Bio</span>
-          <h2 class="about-bio-heading reveal">Rhein<br>Lacson.</h2>
-          <p class="about-bio-text reveal">I'm a 3rd-year B.S. Information Technology student at <strong style="color:var(--white)">Holy Angel University</strong> in the Philippines, specializing in web development, UI/UX design, and database management. I care about building things that are fast, purposeful, and genuinely good-looking.</p>
-          <p class="about-bio-text reveal">My journey started with curiosity — tinkering with HTML, breaking things, fixing them, and slowly getting better. Today I build full-page web experiences from scratch: from the first wireframe sketch to the deployed live site.</p>
-          <p class="about-bio-text reveal">I believe great software is empathetic. Every click, scroll, and interaction represents a real human on the other side — and that responsibility shapes how I design and code.</p>
+    <!-- Headline above photo -->
+    <div class="editorial-headline">
+      <h2 class="editorial-headline-main">
+        Rhein is an <em>Aspiring</em><br>Front-End Developer.
+      </h2>
+      <p class="editorial-sub">3rd Year · B.S. Information Technology · Holy Angel University · Philippines 🇵🇭</p>
+    </div>
 
-          <div class="about-page-stats reveal">
-            <div class="about-page-stat">
-              <span class="about-page-stat-num">4</span>
-              <span class="about-page-stat-label">Projects Built</span>
-            </div>
-            <div class="about-page-stat">
-              <span class="about-page-stat-num">9</span>
-              <span class="about-page-stat-label">Certifications</span>
-            </div>
-            <div class="about-page-stat">
-              <span class="about-page-stat-num">'27</span>
-              <span class="about-page-stat-label">Grad Year</span>
-            </div>
-          </div>
+    <!-- Centred photo, dark bg dissolves into page -->
+    <div class="editorial-photo-wrap">
+      <div class="editorial-glow"></div>
+      <img src="assets/images/rhein_cutout.png" alt="Rhein Lacson"/>
+    </div>
 
-          <div class="about-info-list reveal">
-            <div class="about-info-row">
-              <span class="about-info-key">Status</span>
-              <span class="about-info-val"><span class="about-avail-dot"></span>Available for OJT &amp; Freelance</span>
-            </div>
-            <div class="about-info-row">
-              <span class="about-info-key">School</span>
-              <span class="about-info-val">Holy Angel University</span>
-            </div>
-            <div class="about-info-row">
-              <span class="about-info-key">Course</span>
-              <span class="about-info-val">B.S. Information Technology</span>
-            </div>
-            <div class="about-info-row">
-              <span class="about-info-key">Year Level</span>
-              <span class="about-info-val">3rd Year</span>
-            </div>
-            <div class="about-info-row">
-              <span class="about-info-key">Location</span>
-              <span class="about-info-val">Philippines 🇵🇭</span>
-            </div>
-            <div class="about-info-row">
-              <span class="about-info-key">Email</span>
-              <span class="about-info-val"><a href="mailto:rfmlacson.16@gmail.com" style="color:var(--blue-ll)">rfmlacson.16@gmail.com</a></span>
-            </div>
-          </div>
-
-          <div style="display:flex;gap:12px;margin-top:28px;" class="reveal">
-            <a href="projects.html" class="btn-primary">View My Work →</a>
-            <a href="resume.html" class="btn-ghost">View Resume</a>
-          </div>
+    <!-- Name + stats strip below photo -->
+    <div class="editorial-info-strip">
+      <div class="editorial-name-block">
+        <span class="editorial-name">Rhein Lacson</span>
+        <span class="editorial-role">Preparing for OJT — 1st Sem, 4th Year</span>
+      </div>
+      <div class="editorial-facts">
+        <div class="editorial-fact">
+          <span class="editorial-fact-num">4</span>
+          <span class="editorial-fact-label">Projects</span>
         </div>
-
-        <!-- RIGHT — Photo -->
-        <div class="about-photo-col reveal">
-          <div style="position:relative;">
-            <div class="about-photo-wrap">
-              <img src="assets/images/rheinel-photo-clean.png" alt="Rhein Lacson — IT Student & Web Developer"/>
-              <div class="about-photo-overlay"></div>
-              <div class="about-photo-tag">
-                <span class="about-photo-tag-name">Rhein Lacson</span>
-                <span class="about-photo-tag-role">IT Student &amp; Front-End Developer</span>
-              </div>
-            </div>
-            <div class="about-floating-badge">
-              <span class="about-floating-badge-num">9</span>
-              <span class="about-floating-badge-label">Verified<br>Certs</span>
-            </div>
-          </div>
-
-          <!-- Approach / values block -->
-          <div style="margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:12px;">
-            <div style="padding:18px;background:var(--black-3);border:1px solid var(--border);border-radius:12px;">
-              <span style="font-size:1.2rem;display:block;margin-bottom:8px;">⚡</span>
-              <span style="font-size:0.82rem;color:var(--white);font-weight:600;display:block;margin-bottom:4px;">Fast Learner</span>
-              <span style="font-size:0.72rem;color:var(--white-3);line-height:1.5;">Picks up new tools and frameworks quickly — always building something.</span>
-            </div>
-            <div style="padding:18px;background:var(--black-3);border:1px solid var(--border);border-radius:12px;">
-              <span style="font-size:1.2rem;display:block;margin-bottom:8px;">🎯</span>
-              <span style="font-size:0.82rem;color:var(--white);font-weight:600;display:block;margin-bottom:4px;">Detail-Oriented</span>
-              <span style="font-size:0.72rem;color:var(--white-3);line-height:1.5;">Pixel-perfect by habit. Clean code, clean design — no loose ends.</span>
-            </div>
-            <div style="padding:18px;background:var(--black-3);border:1px solid var(--border);border-radius:12px;">
-              <span style="font-size:1.2rem;display:block;margin-bottom:8px;">🤝</span>
-              <span style="font-size:0.82rem;color:var(--white);font-weight:600;display:block;margin-bottom:4px;">Team Player</span>
-              <span style="font-size:0.72rem;color:var(--white-3);line-height:1.5;">Comfortable collaborating across design, dev, and stakeholder teams.</span>
-            </div>
-            <div style="padding:18px;background:var(--black-3);border:1px solid var(--border);border-radius:12px;">
-              <span style="font-size:1.2rem;display:block;margin-bottom:8px;">🚀</span>
-              <span style="font-size:0.82rem;color:var(--white);font-weight:600;display:block;margin-bottom:4px;">Outcome-Driven</span>
-              <span style="font-size:0.72rem;color:var(--white-3);line-height:1.5;">Ships work that solves real problems — not just looks good in mockups.</span>
-            </div>
-          </div>
+        <div class="editorial-fact">
+          <span class="editorial-fact-num">9</span>
+          <span class="editorial-fact-label">Certifications</span>
         </div>
-
+        <div class="editorial-fact">
+          <span class="editorial-fact-num">'27</span>
+          <span class="editorial-fact-label">Grad Year</span>
+        </div>
       </div>
     </div>
+
+    <hr class="editorial-rule"/>
+
+    <!-- Bio — 3 numbered cards -->
+    <div class="editorial-bio-grid reveal">
+      <div class="editorial-bio-col" data-num="01">
+        <span class="editorial-bio-label">Background</span>
+        <p class="editorial-bio-text">I'm a 3rd-year B.S. Information Technology student at <strong>Holy Angel University</strong> in the Philippines. An aspiring front-end developer who loves turning ideas into real, working websites — from the first wireframe to deployment.</p>
+      </div>
+      <div class="editorial-bio-col" data-num="02">
+        <span class="editorial-bio-label">How I Got Here</span>
+        <p class="editorial-bio-text">It started with curiosity — tinkering with HTML, breaking things, fixing them, and slowly getting better. I've built real projects from scratch through academic work and personal learning, and I'm always working on something new.</p>
+      </div>
+      <div class="editorial-bio-col" data-num="03">
+        <span class="editorial-bio-label">Where I'm Headed</span>
+        <p class="editorial-bio-text">Heading into 4th year and applying for OJT in the first semester. I'm eager to bring everything I've learned into a real professional environment — <strong>clean code</strong>, user-first thinking, and a hunger to keep growing.</p>
+      </div>
+    </div>
+
+    <!-- Meta info — table grid -->
+    <div class="editorial-meta reveal">
+      <div class="editorial-meta-item">
+        <strong>School</strong>
+        <span>Holy Angel University</span>
+      </div>
+      <div class="editorial-meta-item">
+        <strong>Course</strong>
+        <span>B.S. Information Technology</span>
+      </div>
+      <div class="editorial-meta-item">
+        <strong>Year Level</strong>
+        <span>3rd Year → 4th Year</span>
+      </div>
+      <div class="editorial-meta-item">
+        <strong>Location</strong>
+        <span>Philippines 🇵🇭</span>
+      </div>
+      <div class="editorial-meta-item">
+        <strong>Email</strong>
+        <a href="mailto:rfmlacson.16@gmail.com">rfmlacson.16@gmail.com</a>
+      </div>
+    </div>
+
+    <!-- CTAs — editorial with tagline -->
+    <div class="editorial-cta reveal">
+      <a href="projects.html" class="btn-primary">View My Work →</a>
+      <a href="resume.html" class="btn-ghost">View Resume</a>
+      <div class="editorial-cta-line"></div>
+      <span class="editorial-cta-tagline">Continuous Improvement. Relentless.</span>
+    </div>
+
   </section>
 
   <!-- SKILLS -->
@@ -582,49 +944,100 @@
     </div>
   </section>
 
-  <!-- CERTIFICATIONS -->
+  <!-- TIMELINE — Coding Journey -->
   <section class="section">
     <div class="container">
-      <span class="eyebrow reveal">Credentials</span>
-      <h2 class="section-title reveal">CERTIFI<em>CATIONS</em></h2>
-      <p style="font-size:0.88rem;color:var(--white-3);margin-bottom:8px;max-width:520px;" class="reveal">9 verified credentials from freeCodeCamp, HubSpot Academy, and Simplilearn — each targeting a specific skill gap.</p>
-      <a href="certifications.html" style="font-family:var(--ff-mono);font-size:0.6rem;color:var(--blue-ll);letter-spacing:0.08em;" class="reveal">View all certifications →</a>
+      <span class="eyebrow reveal">04 — Story</span>
+      <h2 class="section-title reveal">MY<br><em>JOURNEY</em></h2>
+      <p style="font-size:0.88rem;color:var(--white-3);margin-top:12px;max-width:500px;" class="reveal">From first line of HTML to building real projects — every step that got me here.</p>
 
-      <div class="about-cert-grid reveal" style="margin-top:28px;">
-        <a href="https://www.freecodecamp.org/certification/rheinlacson/back-end-development-and-apis" target="_blank" rel="noopener" class="about-cert-card">
-          <span class="about-cert-issuer">freeCodeCamp</span>
-          <span class="about-cert-name">Back End Development &amp; APIs</span>
-          <span class="about-cert-year">2024 · Verify ↗</span>
-        </a>
-        <a href="https://www.freecodecamp.org/certification/rheinlacson/javascript-algorithms-and-data-structures" target="_blank" rel="noopener" class="about-cert-card">
-          <span class="about-cert-issuer">freeCodeCamp</span>
-          <span class="about-cert-name">JavaScript Algorithms &amp; Data Structures</span>
-          <span class="about-cert-year">2024 · Verify ↗</span>
-        </a>
-        <a href="https://app-na2.hubspot.com/academy/achievements/dhwdw6lt/en/1/rheinel-fred-lacson/digital-marketing" target="_blank" rel="noopener" class="about-cert-card">
-          <span class="about-cert-issuer">HubSpot Academy</span>
-          <span class="about-cert-name">Digital Marketing</span>
-          <span class="about-cert-year">2024 · Verify ↗</span>
-        </a>
-        <a href="https://app-na2.hubspot.com/academy/achievements/ncqbnq8z/en/1/rheinel-fred-lacson/content-marketing" target="_blank" rel="noopener" class="about-cert-card">
-          <span class="about-cert-issuer">HubSpot Academy</span>
-          <span class="about-cert-name">Content Marketing</span>
-          <span class="about-cert-year">2025 · Verify ↗</span>
-        </a>
-        <a href="https://app-na2.hubspot.com/academy/achievements/4v779zl2/en/1/rheinel-fred-lacson/seo" target="_blank" rel="noopener" class="about-cert-card">
-          <span class="about-cert-issuer">HubSpot Academy</span>
-          <span class="about-cert-name">SEO</span>
-          <span class="about-cert-year">2026 · Verify ↗</span>
-        </a>
-        <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNzgwIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODcwNDQwNl84MDU2Nzg5MTc1Mzc5MTA4NjY2OS5wbmciLCJ1c2VybmFtZSI6IkxhY3NvbiwgUmhlaW5lbCBGcmVkIE0uIn0%3D&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F4299%2FDesign%2520Thinking%2520for%2520Beginners%2Fcertificate%2Fdownload-skillup&%24web_only=true" target="_blank" rel="noopener" class="about-cert-card">
-          <span class="about-cert-issuer">Simplilearn</span>
-          <span class="about-cert-name">Design Thinking for Beginners</span>
-          <span class="about-cert-year">2025 · Verify ↗</span>
-        </a>
-      </div>
+      <div class="timeline-wrap reveal">
+        <!-- Vertical spine -->
+        <div class="timeline-spine"></div>
 
-      <div style="text-align:center;margin-top:28px;" class="reveal">
-        <a href="certifications.html" class="btn-primary">View All 9 Certifications →</a>
+        <!-- 2022 — Start -->
+        <div class="timeline-item">
+          <span class="timeline-year">2022</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-tag">Origin</span>
+            <h3 class="timeline-title">The First &lt;div&gt;</h3>
+            <p class="timeline-desc">Enrolled at <strong>Holy Angel University</strong> taking B.S. Information Technology. Wrote my first lines of HTML and CSS — mostly copy-pasted, mostly broken. Got hooked anyway.</p>
+            <div class="timeline-pills">
+              <span class="timeline-pill">HTML</span>
+              <span class="timeline-pill">CSS</span>
+              <span class="timeline-pill">1st Year</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2023 — Getting serious -->
+        <div class="timeline-item">
+          <span class="timeline-year">2023</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-tag">Growth</span>
+            <h3 class="timeline-title">JavaScript Clicked</h3>
+            <p class="timeline-desc">Pushed past static pages into real interactivity. Started building things from scratch — layouts, components, logic. Began chasing certifications to fill knowledge gaps fast.</p>
+            <div class="timeline-pills">
+              <span class="timeline-pill">JavaScript</span>
+              <span class="timeline-pill">Figma</span>
+              <span class="timeline-pill">UI/UX</span>
+              <span class="timeline-pill">2nd Year</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2024 — Projects & certs -->
+        <div class="timeline-item">
+          <span class="timeline-year">2024</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-tag">Building</span>
+            <h3 class="timeline-title">First Real Projects</h3>
+            <p class="timeline-desc">Shipped <strong>Aid4Odette</strong> — a live donation portal — and <strong>Wings 2 Go</strong>, a restaurant site with ordering flow. Earned certifications from freeCodeCamp in JavaScript &amp; Back-End Development. Started caring about craft, not just completion.</p>
+            <div class="timeline-pills">
+              <span class="timeline-pill">Node.js</span>
+              <span class="timeline-pill">MySQL</span>
+              <span class="timeline-pill">React</span>
+              <span class="timeline-pill">freeCodeCamp</span>
+              <span class="timeline-pill">3rd Year</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2025 — Levelling up -->
+        <div class="timeline-item">
+          <span class="timeline-year">2025</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-tag">Levelling Up</span>
+            <h3 class="timeline-title">Deeper, Faster, Better</h3>
+            <p class="timeline-desc">Expanded into digital marketing, SEO, and design thinking — understanding the full picture beyond code. Built this portfolio. Every project a lesson, every bug a step forward.</p>
+            <div class="timeline-pills">
+              <span class="timeline-pill">SEO</span>
+              <span class="timeline-pill">Marketing</span>
+              <span class="timeline-pill">Photoshop</span>
+              <span class="timeline-pill">DaVinci</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NOW — OJT -->
+        <div class="timeline-item is-now">
+          <span class="timeline-year">Now</span>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <span class="timeline-tag">Current</span>
+            <h3 class="timeline-title">Ready for OJT</h3>
+            <p class="timeline-desc">Heading into 4th year. Applying for OJT in the first semester — ready to take everything I've built and learned into a real professional environment. The story's still being written.</p>
+            <div class="timeline-pills">
+              <span class="timeline-pill">OJT — 1st Sem 4th Year</span>
+              <span class="timeline-pill">Holy Angel University</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -707,7 +1120,7 @@
       <div class="footer-cta-row">
         <div class="footer-cta-left">
           <span class="footer-cta-eyebrow">Let's Connect</span>
-          <h2 class="footer-cta-heading">Got a project? <span>Let's build.</span></h2>
+          <h2 class="footer-cta-heading">Want to connect? <span>Let's talk.</span></h2>
         </div>
         <a href="contact.html" class="footer-cta-btn">Start a Conversation →</a>
       </div>
@@ -717,7 +1130,7 @@
             <img src="assets/images/rl-logo-transparent.png" alt="RL" class="footer-logo-img"/>
             <span class="footer-name">Rhein Lacson</span>
           </div>
-          <p class="footer-desc">IT Student &amp; Front-End Developer at Holy Angel University, Philippines. Building fast, responsive, and purposeful web experiences.</p>
+          <p class="footer-desc">Aspiring front-end developer &amp; 3rd-year IT student at Holy Angel University, Philippines. Building real projects and preparing for OJT.</p>
         </div>
         <div>
           <span class="footer-col-title">Navigate</span>
@@ -760,6 +1173,24 @@
     });
   }, { threshold: 0.2 });
   fills.forEach(f => obs.observe(f));
+
+  // Timeline stagger — each item slides in as it enters viewport
+  const tlItems = document.querySelectorAll('.timeline-item');
+  tlItems.forEach((item, i) => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateX(-18px)';
+    item.style.transition = `opacity 0.55s ease ${i * 0.12}s, transform 0.55s cubic-bezier(0.23,1,0.32,1) ${i * 0.12}s`;
+  });
+  const tlObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateX(0)';
+        tlObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  tlItems.forEach(item => tlObs.observe(item));
 </script>
 <script src="js/script.js"></script>
 <canvas class="stars-canvas" id="starsCanvas"></canvas>
