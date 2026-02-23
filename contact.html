@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="assets/images/rl-logo-transparent.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Get in touch with Rhein Lacson — IT Student &amp; Front-End Developer. Available for OJT, freelance, and collaboration opportunities."/>
+  <meta name="keywords" content="contact Rhein Lacson, hire web developer Philippines, OJT web developer, front-end freelance"/>
+  <meta property="og:title" content="Contact — Rhein Lacson"/>
+  <meta property="og:description" content="Available for OJT, freelance, and collaboration. Get in touch with Rhein Lacson."/>
+  <meta property="og:image" content="assets/images/rl-logo-new.png"/>
+  <meta property="og:type" content="website"/>
+  <title>Contact — RL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* ── BASE STYLES ───────────────────────────────────────── */
+    .contact-hero {
+      min-height: 52vh; display: flex; align-items: center;
+      padding: 130px 0 60px; position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-hero .hero-dots { opacity: 0.4; }
+    .contact-hero-inner {
+      position: relative; z-index: 2; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center;
+    }
+    .contact-hero-eyebrow {
+      font-family: var(--ff-mono); font-size: 0.68rem;
+      letter-spacing: 0.2em; color: var(--blue-ll); text-transform: uppercase;
+      display: block; margin-bottom: 16px;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .contact-hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(4rem, 9vw, 8rem);
+      font-weight: 400; line-height: 0.88; color: var(--white);
+      letter-spacing: 0.02em; animation: fadeUp 0.7s ease 0.2s both;
+      margin-bottom: 24px;
+    }
+    .contact-hero-title .line2 { color: var(--blue-ll); }
+    .contact-hero-right { animation: fadeUp 0.7s ease 0.3s both; }
+    .contact-hero-sub { font-size: 0.95rem; color: var(--white-3); line-height: 1.8; margin-bottom: 32px; }
+    .contact-quick-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-quick-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 18px; border: 1px solid var(--border);
+      border-radius: 8px; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      background: var(--black-3);
+    }
+    .contact-quick-item:hover { border-color: var(--blue-ll); transform: translateX(4px); background: var(--black-4); }
+    .cq-label { font-family: var(--ff-mono); font-size: 0.58rem; color: var(--blue-ll); text-transform: uppercase; letter-spacing: 0.12em; }
+    .cq-val { font-size: 0.82rem; color: var(--white-2); }
+    .contact-avail {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--ff-mono); font-size: 0.6rem;
+      color: #4ade80; letter-spacing: 0.12em; text-transform: uppercase;
+      background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2);
+      padding: 7px 16px; border-radius: 100px;
+      animation: fadeUp 0.7s ease 0.45s both;
+    }
+    .avail-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: #4ade80; box-shadow: 0 0 6px #4ade80;
+      animation: blink 2s ease-in-out infinite;
+    }
+    .contact-main { padding: 80px 0; }
+    .contact-grid {
+      display: grid; grid-template-columns: minmax(280px, 400px) 1fr;
+      gap: 48px; align-items: start;
+    }
+    .contact-left-col { display: flex; flex-direction: column; }
+    .ch-label {
+      font-family: var(--ff-mono); font-size: 0.6rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--blue-ll); margin-bottom: 18px; display: block;
+    }
+    .ch-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .ch-card {
+      display: flex; align-items: center; gap: 16px;
+      padding: 15px 18px; background: var(--black-3);
+      border: 1px solid var(--border); border-radius: 8px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      text-decoration: none;
+    }
+    .ch-card:hover { border-color: var(--border-hi); background: var(--black-4); transform: translateX(4px); }
+    .ch-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      background: var(--black-4); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0; transition: border-color 0.2s;
+    }
+    .ch-card:hover .ch-icon { border-color: var(--border-hi); }
+    .ch-info { flex: 1; min-width: 0; }
+    .ch-type { font-family: var(--ff-mono); font-size: 0.55rem; color: var(--white-3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 3px; }
+    .ch-val { font-size: 0.87rem; color: var(--white-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .ch-arr { font-family: var(--ff-mono); font-size: 0.7rem; color: var(--white-3); flex-shrink: 0; transition: color 0.2s, transform 0.2s; }
+    .ch-card:hover .ch-arr { color: var(--blue-ll); transform: translateX(3px); }
+    .help-list { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+    .help-item { display: flex; align-items: center; gap: 10px; font-size: 0.83rem; color: var(--white-3); }
+    .help-item span { color: var(--blue-ll); font-size: 0.7rem; }
+    .form-card {
+      background: var(--black-3); border: 1px solid var(--border);
+      border-radius: 12px; padding: 36px;
+    }
+    .form-card-title { font-family: var(--ff-display); font-size: 2rem; color: var(--white); margin-bottom: 6px; }
+    .form-card-sub { font-size: 0.82rem; color: var(--white-3); margin-bottom: 28px; line-height: 1.6; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    /* ── RESPONSIVE (always AFTER base styles) ─────────────── */
+    @media (max-width: 1024px) {
+      .contact-hero-inner { grid-template-columns: 1fr; gap: 40px; }
+      .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+      .contact-hero { min-height: auto; padding: 120px 0 52px; }
+    }
+    @media (max-width: 768px) {
+      .contact-hero { padding: 110px 0 44px; }
+      .contact-main { padding: 56px 0; }
+      .form-card { padding: 28px 22px; }
+      .form-row { grid-template-columns: 1fr; gap: 14px; }
+    }
+    @media (max-width: 600px) {
+      .contact-hero { padding: 90px 0 36px; }
+      .contact-hero-title { font-size: clamp(3rem, 15vw, 5rem); }
+      .contact-hero-sub { font-size: 0.88rem; }
+      .contact-quick-item { padding: 11px 14px; }
+      .cq-val { font-size: 0.76rem; }
+      .contact-main { padding: 44px 0; }
+      .form-card { padding: 20px 16px; border-radius: 8px; }
+      .form-card-title { font-size: 1.6rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .ch-card { padding: 12px 14px; gap: 12px; }
+      .ch-icon { width: 34px; height: 34px; font-size: 0.9rem; }
+    }
+    @media (max-width: 480px) {
+      .contact-hero-title { font-size: clamp(2.6rem, 16vw, 4rem); }
+      .form-card { padding: 16px 14px; }
+      .form-card-title { font-size: 1.4rem; }
+      .ch-list { gap: 8px; }
+      .contact-quick-links { gap: 8px; }
+    }
+
+    .footer-bigname {
+      text-align: center; padding: 60px 0 0; overflow: hidden;
+      border-top: 1px solid var(--border); margin-top: 80px;
+    }
+    .footer-bigname-text {
+      font-family: var(--ff-display);
+      font-size: clamp(3.5rem, 10vw, 9rem);
+      color: transparent; -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+      line-height: 0.9; letter-spacing: 0.02em;
+      user-select: none; white-space: nowrap;
+    }
+
+    /* contact-grid handled above */
+  </style>
+</head>
+<body>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
+</div></div>
+<button id="backToTop" aria-label="Back to top">↑</button>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<header>
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo" aria-label="Home">
+        <img src="assets/images/rl-logo-transparent.png" alt="RL" class="nav-logo-img"/>
+        <span class="nav-logo-name">Rhein Lacson</span>
+      </a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <div class="nav-pill" aria-hidden="true"></div>
+        <li><a href="index.html" class="nav-link" data-num="01">Home</a></li>
+        <li><a href="about.html" class="nav-link" data-num="02">About</a></li>
+        <li><a href="projects.html" class="nav-link" data-num="03">Projects</a></li>
+        <li><a href="resume.html" class="nav-link" data-num="04">Resume</a></li>
+        <li><a href="certifications.html" class="nav-link" data-num="05">Certifications</a></li>
+        <li><a href="blog.html" class="nav-link" data-num="06">Blog</a></li>
+        <li><a href="contact.html" class="nav-link active" data-num="07">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button id="themeToggle" aria-label="Toggle light/dark" style="background:none;border:1px solid var(--border);border-radius:6px;padding:6px 11px;cursor:pointer;font-size:0.82rem;color:rgba(100,120,180,0.85);transition:all 0.2s;margin-right:6px;"><span id="themeIcon">☀</span></button>
+                <a href="contact.html" class="btn-nav">Get In Touch</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+
+  <!-- ═══ HERO ═══ -->
+  <section class="contact-hero">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <div class="container contact-hero-inner">
+      <div class="contact-hero-left">
+        <span class="contact-hero-eyebrow">07 — Contact</span>
+        <h1 class="contact-hero-title">
+          LET&#x27;S<br><span class="line2">BUILD</span><br>SOMETHING<span class="accent">.</span>
+        </h1>
+        <span class="contact-avail">
+          <span class="avail-dot" aria-hidden="true"></span>
+          Open for OJT &amp; Freelance Work
+        </span>
+      </div>
+      <div class="contact-hero-right">
+        <p class="contact-hero-sub">Have a project, a question, or just want to connect? Drop me a message — I read every one.</p>
+        <div class="contact-quick-links">
+          <a href="mailto:rfmlacson.16@gmail.com" class="contact-quick-item">
+            <span class="cq-label">Email</span>
+            <span class="cq-val">rfmlacson.16@gmail.com ↗</span>
+          </a>
+          <a href="https://linkedin.com/in/rheinlacson" target="_blank" rel="noopener" class="contact-quick-item">
+            <span class="cq-label">LinkedIn</span>
+            <span class="cq-val">linkedin.com/in/rheinlacson ↗</span>
+          </a>
+          <a href="https://github.com/rehein16" target="_blank" rel="noopener" class="contact-quick-item">
+            <span class="cq-label">GitHub</span>
+            <span class="cq-val">github.com/rehein16 ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ MARQUEE ═══ -->
+  <div class="marquee-strip" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Rhein Lacson</span><span class="m-sep">✦</span>
+      <span>IT Student &amp; Web Developer</span><span class="m-sep">✦</span>
+      <span>Available for OJT</span><span class="m-sep">✦</span>
+      <span>Philippines</span><span class="m-sep">✦</span>
+      <span>Holy Angel University</span><span class="m-sep">✦</span>
+      <span>Let's Collaborate</span><span class="m-sep">✦</span>
+      <span>rfmlacson.16@gmail.com</span><span class="m-sep">✦</span>
+      <span>Rhein Lacson</span><span class="m-sep">✦</span>
+      <span>IT Student &amp; Web Developer</span><span class="m-sep">✦</span>
+      <span>Available for OJT</span><span class="m-sep">✦</span>
+      <span>Philippines</span><span class="m-sep">✦</span>
+      <span>Holy Angel University</span><span class="m-sep">✦</span>
+      <span>Let's Collaborate</span><span class="m-sep">✦</span>
+      <span>rfmlacson.16@gmail.com</span><span class="m-sep">✦</span>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN ═══ -->
+  <div class="contact-main">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT: Channels -->
+        <div class="contact-left-col">
+          <span class="ch-label">Direct Channels</span>
+          <div class="ch-list">
+            <a href="mailto:rfmlacson.16@gmail.com" class="ch-card reveal">
+              <div class="ch-icon">✉️</div>
+              <div class="ch-info">
+                <p class="ch-type">Email</p>
+                <p class="ch-val">rfmlacson.16@gmail.com</p>
+              </div>
+              <span class="ch-arr">→</span>
+            </a>
+            <a href="https://linkedin.com/in/rheinlacson" target="_blank" rel="noopener" class="ch-card reveal">
+              <div class="ch-icon">💼</div>
+              <div class="ch-info">
+                <p class="ch-type">LinkedIn</p>
+                <p class="ch-val">linkedin.com/in/rheinlacson</p>
+              </div>
+              <span class="ch-arr">→</span>
+            </a>
+            <a href="https://github.com/rehein16" target="_blank" rel="noopener" class="ch-card reveal">
+              <div class="ch-icon">🐙</div>
+              <div class="ch-info">
+                <p class="ch-type">GitHub</p>
+                <p class="ch-val">github.com/rehein16</p>
+              </div>
+              <span class="ch-arr">→</span>
+            </a>
+            <div class="ch-card reveal" style="cursor:default;">
+              <div class="ch-icon">📍</div>
+              <div class="ch-info">
+                <p class="ch-type">Location</p>
+                <p class="ch-val">Angeles City, Pampanga 🇵🇭</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- What I can help with -->
+          <div class="reveal">
+            <p style="font-family:var(--ff-mono);font-size:0.6rem;color:var(--blue-ll);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:8px;">What I can help with</p>
+            <div class="help-list">
+              <div class="help-item"><span>→</span> Web Design &amp; Development</div>
+              <div class="help-item"><span>→</span> UI/UX Design (Figma)</div>
+              <div class="help-item"><span>→</span> Front-End Development</div>
+              <div class="help-item"><span>→</span> Responsive &amp; Accessible Sites</div>
+              <div class="help-item"><span>→</span> SEO &amp; Digital Marketing</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Form -->
+        <div class="form-card reveal">
+          <h2 class="form-card-title">SEND A MESSAGE</h2>
+          <p class="form-card-sub">Fill out the form below and I'll get back to you within 24 hours.</p>
+
+          <form id="contactForm" novalidate>
+            <div class="form-row" style="margin-bottom:14px;">
+              <div class="form-group">
+                <label class="form-label" for="firstNameInput">First Name *</label>
+                <input class="form-input" type="text" id="firstNameInput" name="firstNameInput" placeholder="Juan" required/>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastNameInput">Last Name *</label>
+                <input class="form-input" type="text" id="lastNameInput" name="lastNameInput" placeholder="dela Cruz" required/>
+              </div>
+            </div>
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label" for="emailInput">Email Address *</label>
+              <input class="form-input" type="email" id="emailInput" name="emailInput" placeholder="juan@email.com" required/>
+            </div>
+            <div class="form-group" style="margin-bottom:14px;">
+              <label class="form-label" for="subjectInput">Subject</label>
+              <input class="form-input" type="text" id="subjectInput" name="subjectInput" placeholder="Project Inquiry, Collaboration, OJT Opportunity..."/>
+            </div>
+            <div class="form-group" style="margin-bottom:20px;">
+              <label class="form-label" for="msgInput">Message *</label>
+              <textarea class="form-input form-textarea" id="msgInput" name="msgInput" placeholder="Tell me about your project or what you have in mind..." required style="min-height:140px;"></textarea>
+            </div>
+            <div id="formStatus" class="form-status" role="status" aria-live="polite" style="margin-bottom:14px;"></div>
+            <button type="submit" class="btn-submit" style="width:100%;justify-content:center;font-size:0.76rem;letter-spacing:0.14em;padding:16px;">
+              SEND MESSAGE →
+            </button>
+            <p class="recaptcha-notice" style="font-size:0.68rem;color:var(--white-3);line-height:1.6;margin-top:14px;">
+              This site is protected by reCAPTCHA and the Google
+              <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--blue-ll);text-decoration:underline;">Privacy Policy</a> and
+              <a href="https://policies.google.com/terms"   target="_blank" rel="noopener" style="color:var(--blue-ll);text-decoration:underline;">Terms of Service</a> apply.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Big name strip -->
+
+</main>
+
+<footer>
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-cta-row">
+        <div class="footer-cta-left">
+          <span class="footer-cta-eyebrow">Let's Connect</span>
+          <h2 class="footer-cta-heading">Got a project? <span>Let's build.</span></h2>
+        </div>
+        <a href="contact.html" class="footer-cta-btn">Start a Conversation →</a>
+      </div>
+      <div class="footer-links-row">
+        <div>
+          <div class="footer-brand-new">
+            <img src="assets/images/rl-logo-transparent.png" alt="RL" class="footer-logo-img"/>
+            <span class="footer-name">Rhein Lacson</span>
+          </div>
+          <p class="footer-desc">IT Student &amp; Front-End Developer at Holy Angel University, Philippines. Building fast, responsive, and purposeful web experiences.</p>
+        </div>
+        <div>
+          <span class="footer-col-title">Navigate</span>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="resume.html">Resume</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-connect">
+          <span class="footer-col-title">Connect</span>
+          <div class="footer-socials">
+            <a href="https://github.com/rehein16" target="_blank" rel="noopener" class="footer-social">GitHub</a>
+            <a href="https://linkedin.com/in/rheinlacson" target="_blank" rel="noopener" class="footer-social">LinkedIn</a>
+            <a href="mailto:rfmlacson.16@gmail.com" class="footer-social">rfmlacson.16@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span class="footer-copy">© 2026 · All rights reserved. Built with purpose.</span>
+        <span class="footer-tagline">"Continuous Improvement. Relentless."</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+<script>
+  /* ── REAL EMAIL via Formspree ──────────────────────────────────
+     SETUP: Go to https://formspree.io → create free account →
+     New Form → set email to rfmlacson.16@gmail.com →
+     copy your form ID (looks like "xpwzabcd") →
+     replace YOUR_FORM_ID below with that ID.
+  ─────────────────────────────────────────────────────────────── */
+  var FORMSPREE_ID = 'mykdnrjv';
+
+  var form   = document.getElementById('contactForm');
+  var status = document.getElementById('formStatus');
+
+  function getVal(id) {
+    var el = document.getElementById(id);
+    return el ? el.value.trim() : '';
+  }
+
+  if (form && status) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var first   = getVal('firstNameInput');
+      var last    = getVal('lastNameInput');
+      var email   = getVal('emailInput');
+      var subject = getVal('subjectInput');
+      var message = getVal('msgInput');
+
+      /* Debug helper — remove after testing */
+      // console.log({first, last, email, message});
+
+      if (!first || !last || !email || !message) {
+        var missing = [];
+        if (!first)   missing.push('First Name');
+        if (!last)    missing.push('Last Name');
+        if (!email)   missing.push('Email');
+        if (!message) missing.push('Message');
+        status.textContent = '⚠ Missing: ' + missing.join(', ');
+        status.className = 'form-status error';
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = '⚠ Please enter a valid email address.';
+        status.className = 'form-status error';
+        return;
+      }
+
+
+      var btn = form.querySelector('[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'SENDING...'; }
+      status.textContent = '';
+      status.className = 'form-status';
+
+      fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          name:    first + ' ' + last,
+          email:   email,
+          subject: subject || 'Portfolio Contact',
+          message: message
+        })
+      })
+      .then(function(r){ return r.json().then(function(d){ return {ok:r.ok, data:d}; }); })
+      .then(function(res){
+        if (res.ok) {
+          status.textContent = "✓ Message sent! I'll reply within 24 hours.";
+          status.className = 'form-status success';
+          form.reset();
+        } else {
+          status.textContent = '⚠ Something went wrong. Please email rfmlacson.16@gmail.com directly.';
+          status.className = 'form-status error';
+        }
+      })
+      .catch(function(){
+        status.textContent = '⚠ Network error. Please email rfmlacson.16@gmail.com';
+        status.className = 'form-status error';
+      })
+      .finally(function(){
+        if (btn) { btn.disabled = false; btn.textContent = 'SEND MESSAGE →'; }
+        setTimeout(function(){ status.textContent=''; status.className='form-status'; }, 8000);
+      });
+    });
+  }
+</script>
+
+<canvas class="stars-canvas" id="starsCanvas"></canvas>
+<script src="js/sky.js"></script>
+</body>
+</html>

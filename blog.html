@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="assets/images/rl-logo-transparent.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Blog by Rhein Lacson — thoughts on web development, front-end techniques, and the journey of an IT student at Holy Angel University."/>
+  <meta name="keywords" content="web development blog, front-end development, HTML CSS JavaScript, IT student Philippines"/>
+  <meta property="og:title" content="Blog — Rhein Lacson"/>
+  <meta property="og:description" content="Thoughts on web development, front-end techniques, and the journey of an IT student."/>
+  <meta property="og:image" content="assets/images/rl-logo-new.png"/>
+  <meta property="og:type" content="website"/>
+  <title>Blog — RL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+</div></div>
+<button id="backToTop" aria-label="Back to top">↑</button>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header>
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="assets/images/rl-logo-transparent.png" alt="RL" class="nav-logo-img"/><span class="nav-logo-name">Rhein Lacson</span></a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <div class="nav-pill" aria-hidden="true"></div>
+        <li><a href="index.html" class="nav-link" data-num="01">Home</a></li>
+        <li><a href="about.html" class="nav-link" data-num="02">About</a></li>
+        <li><a href="projects.html" class="nav-link" data-num="03">Projects</a></li>
+        <li><a href="resume.html" class="nav-link" data-num="04">Resume</a></li>
+        <li><a href="certifications.html" class="nav-link" data-num="05">Certifications</a></li>
+        <li><a href="blog.html" class="nav-link active" data-num="06">Blog</a></li>
+        <li><a href="contact.html" class="nav-link" data-num="07">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button id="themeToggle" aria-label="Toggle light/dark" style="background:none;border:1px solid var(--border);border-radius:6px;padding:6px 11px;cursor:pointer;font-size:0.82rem;color:rgba(100,120,180,0.85);transition:all 0.2s;margin-right:6px;"><span id="themeIcon">☀</span></button>
+                <a href="contact.html" class="btn-nav">Get In Touch</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+  <div class="page-hero">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container page-hero-inner">
+      <span class="eyebrow">06 — Thoughts &amp; Writing</span>
+      <h1 class="page-title">BLOG<span style="color:var(--blue-ll)">.</span></h1>
+      <div style="display:flex;align-items:center;gap:14px;margin-top:18px;font-family:var(--ff-mono);font-size:0.65rem;color:var(--white-3);">
+        <strong style="color:var(--blue-ll);">Rhein Lacson</strong>
+        <span>·</span>
+        <span>3 Posts</span>
+        <span>·</span>
+        <span>IT Student &amp; Web Developer</span>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <div class="blog-grid">
+
+        <!-- Post 1 -->
+        <article class="blog-post reveal">
+          <div class="blog-post-header">
+            <span class="blog-post-num">01</span>
+            <div style="flex:1;">
+              <div class="blog-tags">
+                <span class="blog-tag">Web Dev</span>
+                <span class="blog-tag">Learning</span>
+              </div>
+              <h2 class="blog-post-title">What I Learned Building My First Real Project</h2>
+              <div class="blog-post-meta-row">
+                <span>Feb 2026</span>
+                <span>·</span>
+                <span>5 min read</span>
+              </div>
+            </div>
+          </div>
+          <p class="blog-post-excerpt">Building Aid4Odette wasn't just an academic exercise — it was my first real encounter with the gap between writing code and designing an experience. Here's what the process taught me about purpose-driven development.</p>
+          <button class="blog-read-btn" aria-expanded="false">Read More ↓</button>
+          <div class="blog-post-body" style="display:none;">
+            <h3>The Brief That Changed Everything</h3>
+            <p>When I started working on Aid4Odette, I thought it would be straightforward: build a donation portal, add a form, done. What I didn't anticipate was how much the emotional weight of the subject matter would influence every design decision. This wasn't just a school project — real people would use this to help real families affected by the typhoon. That pressure made me think harder than any grade ever did.</p>
+            <blockquote>"Design isn't just what it looks like. Design is how it works." — Steve Jobs</blockquote>
+            <h3>Learning to Design for Trust</h3>
+            <p>Donation platforms live or die by trust. Users need to feel confident that their money is going somewhere real. That meant clean typography, transparent fund allocation breakdowns, and a checkout flow that felt secure — not like a sketchy phishing page. I redesigned the donation form four times before it felt right. Each iteration taught me something new about clarity, hierarchy, and friction reduction.</p>
+            <h3>Technical Wins and Losses</h3>
+            <p>I pushed my CSS layout skills further than I ever had — the hero section uses a combination of CSS Grid and absolute positioning that took me two full days to nail. I also learned the hard way that audio autoplay is blocked by default in modern browsers and requires explicit user interaction to trigger. That wasted almost half a day before I found the fix. Debugging real-world browser behavior is a completely different skill from writing clean tutorial code.</p>
+            <h3>What I'd Do Differently</h3>
+            <p>I'd plan the component structure before writing a single line of CSS. I jumped straight into styling and ended up with a tangled mess of overrides halfway through. Starting with a rough wireframe in Figma first would have saved me hours. That's now a non-negotiable step in my process.</p>
+            <h3>Key Takeaways</h3>
+            <p>Every project teaches you something you didn't know you needed to know. Aid4Odette taught me that good UI is inherently empathetic — you're always designing for a human being on the other side of the screen, and that responsibility should shape every pixel you place.</p>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="blog-post reveal">
+          <div class="blog-post-header">
+            <span class="blog-post-num">02</span>
+            <div style="flex:1;">
+              <div class="blog-tags">
+                <span class="blog-tag">CSS</span>
+                <span class="blog-tag">Design</span>
+              </div>
+              <h2 class="blog-post-title">CSS Grid vs Flexbox: When to Use Which</h2>
+              <div class="blog-post-meta-row">
+                <span>Jan 2026</span>
+                <span>·</span>
+                <span>4 min read</span>
+              </div>
+            </div>
+          </div>
+          <p class="blog-post-excerpt">After building three full projects, I finally have a concrete mental model for when to reach for Grid and when Flexbox is the right tool. Spoiler: it's about one dimension versus two.</p>
+          <button class="blog-read-btn" aria-expanded="false">Read More ↓</button>
+          <div class="blog-post-body" style="display:none;">
+            <h3>The Core Distinction</h3>
+            <p>Flexbox is one-dimensional: it controls layout along a single axis — either a row or a column, never both at the same time. Grid is two-dimensional: it manages rows and columns simultaneously. That single sentence answers about 80% of "which one do I use?" questions. Once it clicked for me, the confusion mostly went away.</p>
+            <h3>Use Flexbox When...</h3>
+            <p>You're aligning items in a navbar, distributing buttons in a row, centering content inside a card, or handling a tag list that wraps naturally. Anything that's fundamentally "items in a line" — reach for flex. It's also ideal when you need to push one item to the far end of a container, like a logo on the left and a CTA button on the right. That's a flex job, not a grid job.</p>
+            <h3>Use Grid When...</h3>
+            <p>You're building a full page layout, a card grid, a magazine-style section, or anything where you need explicit control over both rows and columns at the same time. Grid really shines when items need to align across two axes — like a dashboard where cards in different rows still need to line up vertically. Grid also makes complex responsive layouts dramatically simpler with just <code>grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))</code>.</p>
+            <h3>A Gotcha I Hit</h3>
+            <p>Early on I kept trying to use Flexbox for two-dimensional card grids and wondering why everything looked off when the screen resized. The cards would grow unevenly, or the last row would be misaligned. The moment I switched to Grid with auto-fit, everything snapped into place. That's a mistake I've never repeated since.</p>
+            <h3>The Real Answer</h3>
+            <p>Use both — together. They're not competitors, they're complements. A Grid layout with Flexbox inside each grid cell is the standard pattern in almost every modern interface, including this portfolio. Grid owns the macro structure; Flexbox handles the micro alignment inside each piece.</p>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="blog-post reveal">
+          <div class="blog-post-header">
+            <span class="blog-post-num">03</span>
+            <div style="flex:1;">
+              <div class="blog-tags">
+                <span class="blog-tag">Career</span>
+                <span class="blog-tag">OJT</span>
+              </div>
+              <h2 class="blog-post-title">Preparing for OJT: What I'm Doing Right Now</h2>
+              <div class="blog-post-meta-row">
+                <span>Dec 2025</span>
+                <span>·</span>
+                <span>3 min read</span>
+              </div>
+            </div>
+          </div>
+          <p class="blog-post-excerpt">OJT season is approaching and I've been intentional about how I'm preparing. Here's a breakdown of what I'm building, learning, and improving before I step into a professional environment.</p>
+          <button class="blog-read-btn" aria-expanded="false">Read More ↓</button>
+          <div class="blog-post-body" style="display:none;">
+            <h3>Building Real Things, Not Just Tutorials</h3>
+            <p>The best preparation for a professional environment is doing professional-quality work. That's why I deliberately stopped following tutorials and started building from scratch — Aid4Odette, Wings 2 Go, and Velour all had real constraints, real stakeholders in mind, and real deployment challenges. There's a gap between finishing a tutorial and shipping something that actually works in a browser on someone else's device. I've been living in that gap, and it's the most valuable place I've ever learned.</p>
+            <h3>Being Selective About Certifications</h3>
+            <p>I'm not collecting certifications for the sake of a longer resume. I'm targeting ones that fill genuine gaps in my knowledge. The freeCodeCamp Back End Development certification pushed me to understand server-side architecture, databases, and APIs in ways I'd been avoiding as a front-end focused developer. Each cert I pursue has a reason behind it — a weakness I've identified, a skill that kept coming up in job postings, or a technology I struggled to use confidently.</p>
+            <h3>This Portfolio as a Project</h3>
+            <p>Building this portfolio has been one of the most valuable projects I've completed — not because it looks good (though I hope it does), but because it forced me to think critically about how I present myself, what I've actually accomplished, and where I genuinely want to go. Writing the "About" section alone took longer than building most of the layout. Articulating your own value is a skill, and it's one I hadn't practiced enough.</p>
+            <h3>What's Next</h3>
+            <p>React is my current focus. I want to be genuinely comfortable building components, managing state, and thinking in a component-based architecture before I enter OJT. After that: TypeScript for type safety, then a full backend project with authentication and a real database. The goal isn't to know everything — it's to be confident enough to learn fast once I'm inside a real team.</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-cta-row">
+        <div class="footer-cta-left">
+          <span class="footer-cta-eyebrow">Let's Connect</span>
+          <h2 class="footer-cta-heading">Got a project? <span>Let's build.</span></h2>
+        </div>
+        <a href="contact.html" class="footer-cta-btn">Start a Conversation →</a>
+      </div>
+      <div class="footer-links-row">
+        <div>
+          <div class="footer-brand-new">
+            <img src="assets/images/rl-logo-transparent.png" alt="RL" class="footer-logo-img"/>
+            <span class="footer-name">Rhein Lacson</span>
+          </div>
+          <p class="footer-desc">IT Student &amp; Front-End Developer at Holy Angel University, Philippines. Building fast, responsive, and purposeful web experiences.</p>
+        </div>
+        <div>
+          <span class="footer-col-title">Navigate</span>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="resume.html">Resume</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-connect">
+          <span class="footer-col-title">Connect</span>
+          <div class="footer-socials">
+            <a href="https://github.com/rehein16" target="_blank" rel="noopener" class="footer-social">GitHub</a>
+            <a href="https://linkedin.com/in/rheinlacson" target="_blank" rel="noopener" class="footer-social">LinkedIn</a>
+            <a href="mailto:rfmlacson.16@gmail.com" class="footer-social">rfmlacson.16@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span class="footer-copy">© 2026 · All rights reserved. Built with purpose.</span>
+        <span class="footer-tagline">"Continuous Improvement. Relentless."</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+
+<canvas class="stars-canvas" id="starsCanvas"></canvas>
+<script src="js/sky.js"></script>
+</body>
+</html>

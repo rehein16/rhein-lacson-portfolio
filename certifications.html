@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <link rel="icon" type="image/png" href="assets/images/rl-logo-transparent.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Certifications earned by Rhein Lacson — freeCodeCamp, HubSpot, Simplilearn, and more."/>
+  <meta name="keywords" content="Rhein Lacson certifications, freeCodeCamp certification, HubSpot Academy, Simplilearn, web developer credentials Philippines, IT student certifications"/>
+  <meta property="og:title" content="Certifications — Rhein Lacson"/>
+  <meta property="og:image" content="assets/images/rl-logo-new.png"/>
+  <meta property="og:type" content="website"/>
+  <title>Certifications — RL</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    /* STATS BAR */
+    .cert-stats-bar { display:flex; gap:0; margin-top:40px; border:1px solid var(--border); border-radius:10px; overflow:hidden; max-width:560px; }
+    .cert-stat { flex:1; padding:16px 20px; border-right:1px solid var(--border); text-align:center; }
+    .cert-stat:last-child { border-right:none; }
+    .cert-stat-num { font-family:var(--ff-display); font-size:2rem; color:var(--blue-ll); line-height:1; display:block; }
+    .cert-stat-label { font-family:var(--ff-mono); font-size:0.52rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--white-3); display:block; margin-top:4px; }
+
+    /* ISSUER SECTION */
+    .cert-issuer-section { margin-bottom:48px; border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+
+    /* ISSUER HEADER */
+    .cert-issuer-header {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:20px 28px;
+      border-bottom:1px solid var(--border);
+    }
+    .cert-issuer-header.fcc-hdr { background:linear-gradient(135deg, rgba(10,207,131,0.06) 0%, rgba(8,14,34,0) 60%); }
+    .cert-issuer-header.hub-hdr { background:linear-gradient(135deg, rgba(255,122,89,0.07) 0%, rgba(8,14,34,0) 60%); }
+    .cert-issuer-header.sim-hdr { background:linear-gradient(135deg, rgba(14,110,184,0.07) 0%, rgba(8,14,34,0) 60%); }
+
+    .cert-issuer-left { display:flex; align-items:center; gap:14px; }
+    .cert-issuer-badge { width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.3rem; flex-shrink:0; }
+    .badge-fcc { background:linear-gradient(135deg,#0a0a23,#1b1b32); border:1px solid rgba(10,207,131,0.4); }
+    .badge-hub { background:linear-gradient(135deg,#ff7a59,#c0392b); border:1px solid rgba(255,122,89,0.4); }
+    .badge-sim { background:linear-gradient(135deg,#1c3f60,#0e6eb8); border:1px solid rgba(79,179,246,0.4); }
+    .cert-issuer-name { font-family:var(--ff-display); font-size:1.1rem; color:var(--white); letter-spacing:0.02em; }
+    .cert-issuer-sub { font-family:var(--ff-mono); font-size:0.52rem; color:var(--white-3); letter-spacing:0.1em; text-transform:uppercase; display:block; margin-top:3px; }
+    .cert-issuer-right { display:flex; align-items:center; gap:12px; }
+    .cert-issuer-count { font-family:var(--ff-mono); font-size:0.55rem; color:var(--blue-ll); letter-spacing:0.1em; text-transform:uppercase; background:rgba(79,142,247,0.1); border:1px solid rgba(79,142,247,0.2); padding:5px 14px; border-radius:20px; }
+
+    /* CARD LIST — horizontal rows, no empty grid cells */
+    .cert-card-list { display:flex; flex-direction:column; }
+
+    /* Each row: one or more cards side by side */
+    .cert-card-row { display:grid; border-bottom:1px solid rgba(147,197,253,0.07); }
+    .cert-card-row:last-child { border-bottom:none; }
+    .cert-card-row.cols-2 { grid-template-columns:1fr 1fr; }
+    .cert-card-row.cols-3 { grid-template-columns:1fr 1fr 1fr; }
+    .cert-card-row.cols-4 { grid-template-columns:1fr 1fr 1fr 1fr; }
+
+    /* Individual card */
+    .cert-card-v2 {
+      padding:24px 26px 20px;
+      display:flex; flex-direction:column;
+      text-decoration:none;
+      position:relative;
+      overflow:hidden;
+      transition:background 0.2s;
+      border-right:1px solid rgba(147,197,253,0.07);
+    }
+    .cert-card-v2:last-child { border-right:none; }
+    .cert-card-v2::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:2px;
+      opacity:0; transition:opacity 0.3s;
+    }
+    .cert-card-v2:hover { background:rgba(79,142,247,0.05); }
+    .cert-card-v2:hover::before { opacity:1; }
+    .cert-card-v2.fcc::before { background:linear-gradient(90deg,#0ACF83,#00eebb); }
+    .cert-card-v2.hub::before { background:linear-gradient(90deg,#ff7a59,#ffb347); }
+    .cert-card-v2.sim::before { background:linear-gradient(90deg,#0e6eb8,#4fb3f6); }
+
+    .cert-card-top { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:14px; }
+    .cert-card-icon-v2 { font-size:1.6rem; line-height:1; }
+    .cert-card-num { font-family:var(--ff-mono); font-size:0.5rem; color:var(--white-3); letter-spacing:0.12em; opacity:0.4; }
+
+    .cert-card-category { font-family:var(--ff-mono); font-size:0.48rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:7px; display:inline-flex; align-items:center; gap:5px; }
+    .cert-card-category::before { content:''; display:inline-block; width:4px; height:4px; border-radius:50%; flex-shrink:0; }
+    .cat-dev { color:#61DAFB; } .cat-dev::before { background:#61DAFB; }
+    .cat-mkt { color:#ff7a59; } .cat-mkt::before { background:#ff7a59; }
+    .cat-seo { color:#0ACF83; } .cat-seo::before { background:#0ACF83; }
+    .cat-des { color:#A259FF; } .cat-des::before { background:#A259FF; }
+    .cat-ai  { color:#F7DF1E; } .cat-ai::before  { background:#F7DF1E; }
+
+    .cert-card-title-v2 { font-family:var(--ff-display); font-size:0.95rem; color:var(--white); line-height:1.25; margin-bottom:8px; flex:1; }
+    .cert-card-desc { font-size:0.72rem; color:var(--white-3); line-height:1.65; margin-bottom:14px; }
+    .cert-card-footer { display:flex; align-items:center; justify-content:space-between; padding-top:12px; border-top:1px solid rgba(147,197,253,0.07); margin-top:auto; }
+    .cert-card-year { font-family:var(--ff-mono); font-size:0.55rem; color:var(--white-3); letter-spacing:0.08em; }
+    .cert-card-verify { font-family:var(--ff-mono); font-size:0.55rem; letter-spacing:0.06em; display:flex; align-items:center; gap:4px; transition:gap 0.2s; }
+    .cert-card-v2.fcc .cert-card-verify { color:#0ACF83; }
+    .cert-card-v2.hub .cert-card-verify { color:#ff7a59; }
+    .cert-card-v2.sim .cert-card-verify { color:#4fb3f6; }
+    .cert-card-v2:hover .cert-card-verify { gap:8px; }
+
+    @media (max-width:900px) {
+      .cert-card-row.cols-3, .cert-card-row.cols-4 { grid-template-columns:1fr 1fr; }
+      .cert-stats-bar { max-width:100%; }
+    }
+    @media (max-width:540px) {
+      .cert-card-row.cols-2, .cert-card-row.cols-3, .cert-card-row.cols-4 { grid-template-columns:1fr; }
+      .cert-issuer-header { flex-direction:column; align-items:flex-start; gap:12px; }
+      .cert-stat-num { font-size:1.6rem; }
+    }
+  </style>
+</head>
+<body>
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+</div></div>
+<button id="backToTop" aria-label="Back to top">↑</button>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<header>
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo"><img src="assets/images/rl-logo-transparent.png" alt="RL" class="nav-logo-img"/><span class="nav-logo-name">Rhein Lacson</span></a>
+      <ul class="nav-links" id="nav-links" role="list">
+        <div class="nav-pill" aria-hidden="true"></div>
+        <li><a href="index.html" class="nav-link" data-num="01">Home</a></li>
+        <li><a href="about.html" class="nav-link" data-num="02">About</a></li>
+        <li><a href="projects.html" class="nav-link" data-num="03">Projects</a></li>
+        <li><a href="resume.html" class="nav-link" data-num="04">Resume</a></li>
+        <li><a href="certifications.html" class="nav-link active" data-num="05">Certifications</a></li>
+        <li><a href="blog.html" class="nav-link" data-num="06">Blog</a></li>
+        <li><a href="contact.html" class="nav-link" data-num="07">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button id="themeToggle" aria-label="Toggle light/dark" style="background:none;border:1px solid var(--border);border-radius:6px;padding:6px 11px;cursor:pointer;font-size:0.82rem;color:rgba(100,120,180,0.85);transition:all 0.2s;margin-right:6px;"><span id="themeIcon">☀</span></button>
+        <a href="contact.html" class="btn-nav">Get In Touch</a>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="main-content">
+  <div class="page-hero">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container page-hero-inner">
+      <span class="eyebrow">05 — Credentials</span>
+      <h1 class="page-title">CERTIFI<span style="color:var(--blue-ll)">CATIONS.</span></h1>
+      <p class="page-subtitle">Verified credentials across development, marketing, SEO, and design — each one targeting a specific skill gap.</p>
+      <div class="cert-stats-bar">
+        <div class="cert-stat"><span class="cert-stat-num">9</span><span class="cert-stat-label">Credentials</span></div>
+        <div class="cert-stat"><span class="cert-stat-num">3</span><span class="cert-stat-label">Issuers</span></div>
+        <div class="cert-stat"><span class="cert-stat-num">4</span><span class="cert-stat-label">Disciplines</span></div>
+        <div class="cert-stat"><span class="cert-stat-num">2026</span><span class="cert-stat-label">Latest</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- ── freeCodeCamp — 2 cards → 1 row of 2 ── -->
+      <div class="cert-issuer-section reveal">
+        <div class="cert-issuer-header fcc-hdr">
+          <div class="cert-issuer-left">
+            <div class="cert-issuer-badge badge-fcc">🏅</div>
+            <div>
+              <span class="cert-issuer-name">freeCodeCamp</span>
+              <span class="cert-issuer-sub">Open-source coding education</span>
+            </div>
+          </div>
+          <div class="cert-issuer-right">
+            <span class="cert-issuer-count">2 Credentials</span>
+          </div>
+        </div>
+        <div class="cert-card-list">
+          <div class="cert-card-row cols-2">
+            <a href="https://www.freecodecamp.org/certification/rheinlacson/back-end-development-and-apis" target="_blank" rel="noopener" class="cert-card-v2 fcc">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">⚙️</span><span class="cert-card-num">01</span></div>
+              <span class="cert-card-category cat-dev">Development</span>
+              <p class="cert-card-title-v2">Back End Development &amp; APIs</p>
+              <p class="cert-card-desc">Server-side logic, Node.js, Express, and RESTful API design and integration.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2024</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+            <a href="https://www.freecodecamp.org/certification/rheinlacson/javascript-algorithms-and-data-structures" target="_blank" rel="noopener" class="cert-card-v2 fcc">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">📜</span><span class="cert-card-num">02</span></div>
+              <span class="cert-card-category cat-dev">Development</span>
+              <p class="cert-card-title-v2">JavaScript Algorithms &amp; Data Structures</p>
+              <p class="cert-card-desc">ES6+, algorithms, data structures, and functional programming patterns.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2024</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HubSpot Academy — 4 cards → row of 3 + row of 1 becomes 2 rows of 2 ── -->
+      <div class="cert-issuer-section reveal">
+        <div class="cert-issuer-header hub-hdr">
+          <div class="cert-issuer-left">
+            <div class="cert-issuer-badge badge-hub">📣</div>
+            <div>
+              <span class="cert-issuer-name">HubSpot Academy</span>
+              <span class="cert-issuer-sub">Marketing &amp; growth education</span>
+            </div>
+          </div>
+          <div class="cert-issuer-right">
+            <span class="cert-issuer-count">4 Credentials</span>
+          </div>
+        </div>
+        <div class="cert-card-list">
+          <div class="cert-card-row cols-2">
+            <a href="https://app-na2.hubspot.com/academy/achievements/dhwdw6lt/en/1/rheinel-fred-lacson/digital-marketing" target="_blank" rel="noopener" class="cert-card-v2 hub">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">📊</span><span class="cert-card-num">01</span></div>
+              <span class="cert-card-category cat-mkt">Marketing</span>
+              <p class="cert-card-title-v2">Digital Marketing</p>
+              <p class="cert-card-desc">Social media, email, paid ads, analytics, and full-funnel campaign strategy.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2024</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+            <a href="https://app-na2.hubspot.com/academy/achievements/ncqbnq8z/en/1/rheinel-fred-lacson/content-marketing" target="_blank" rel="noopener" class="cert-card-v2 hub">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">✍️</span><span class="cert-card-num">02</span></div>
+              <span class="cert-card-category cat-mkt">Marketing</span>
+              <p class="cert-card-title-v2">Content Marketing</p>
+              <p class="cert-card-desc">Content strategy, storytelling, SEO writing, and multi-channel distribution.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2025</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+          </div>
+          <div class="cert-card-row cols-2">
+            <a href="https://app-na2.hubspot.com/academy/achievements/4v779zl2/en/1/rheinel-fred-lacson/seo" target="_blank" rel="noopener" class="cert-card-v2 hub">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">🔍</span><span class="cert-card-num">03</span></div>
+              <span class="cert-card-category cat-seo">SEO</span>
+              <p class="cert-card-title-v2">SEO</p>
+              <p class="cert-card-desc">On-page SEO, keyword research, link building, and technical optimization fundamentals.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2026</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+            <a href="https://app-na2.hubspot.com/academy/achievements/v2gbdzhp/en/1/rheinel-fred-lacson/seo-ii" target="_blank" rel="noopener" class="cert-card-v2 hub">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">🔎</span><span class="cert-card-num">04</span></div>
+              <span class="cert-card-category cat-seo">SEO</span>
+              <p class="cert-card-title-v2">SEO II</p>
+              <p class="cert-card-desc">Advanced SEO strategies, technical audits, schema markup, and search performance.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2026</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Simplilearn — 3 cards → 1 row of 3 ── -->
+      <div class="cert-issuer-section reveal">
+        <div class="cert-issuer-header sim-hdr">
+          <div class="cert-issuer-left">
+            <div class="cert-issuer-badge badge-sim">🎓</div>
+            <div>
+              <span class="cert-issuer-name">Simplilearn</span>
+              <span class="cert-issuer-sub">Professional skills &amp; tech training</span>
+            </div>
+          </div>
+          <div class="cert-issuer-right">
+            <span class="cert-issuer-count">3 Credentials</span>
+          </div>
+        </div>
+        <div class="cert-card-list">
+          <div class="cert-card-row cols-3">
+            <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxOTY4IiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvNzg5NzI5OF84MDU2Nzg5MTczOTQ1ODE5Mzc5OC5wbmciLCJ1c2VybmFtZSI6IkxhY3NvbiwgUmhlaW5lbCBGcmVkIE0uIn0%3D&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F4587%2FIntroduction-to-PHP%2Fcertificate%2Fdownload-skillup&%24web_only=true" target="_blank" rel="noopener" class="cert-card-v2 sim">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">🐘</span><span class="cert-card-num">01</span></div>
+              <span class="cert-card-category cat-dev">Development</span>
+              <p class="cert-card-title-v2">Introduction to PHP</p>
+              <p class="cert-card-desc">PHP scripting fundamentals, server-side development, and form handling basics.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2025</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+            <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIxNzgwIiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODcwNDQwNl84MDU2Nzg5MTc1Mzc5MTA4NjY2OS5wbmciLCJ1c2VybmFtZSI6IkxhY3NvbiwgUmhlaW5lbCBGcmVkIE0uIn0%3D&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F4299%2FDesign%2520Thinking%2520for%2520Beginners%2Fcertificate%2Fdownload-skillup&%24web_only=true" target="_blank" rel="noopener" class="cert-card-v2 sim">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">💡</span><span class="cert-card-num">02</span></div>
+              <span class="cert-card-category cat-des">Design</span>
+              <p class="cert-card-title-v2">Design Thinking for Beginners</p>
+              <p class="cert-card-desc">Human-centered design, empathy mapping, ideation, and rapid prototyping methods.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2025</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+            <a href="https://www.simplilearn.com/skillup-certificate-landing?token=eyJjb3Vyc2VfaWQiOiIzMjM3IiwiY2VydGlmaWNhdGVfdXJsIjoiaHR0cHM6XC9cL2NlcnRpZmljYXRlcy5zaW1wbGljZG4ubmV0XC9zaGFyZVwvODkwODEwMl85Mjk3NTk5MTc1NjkxMTg0MjA4OC5wbmciLCJ1c2VybmFtZSI6IkxhY3NvbiwgUmhlaW5lbCBGcmVkIE0uIn0%3D&referrer=https%3A%2F%2Flms.simplilearn.com%2Fcourses%2F6024%2FWebsite-UI%252FUX-Designing-using-ChatGPT-%3A-Become-a-UI-UX-designer%2Fcertificate%2Fdownload-skillup&%24web_only=true" target="_blank" rel="noopener" class="cert-card-v2 sim">
+              <div class="cert-card-top"><span class="cert-card-icon-v2">🤖</span><span class="cert-card-num">03</span></div>
+              <span class="cert-card-category cat-ai">AI · Design</span>
+              <p class="cert-card-title-v2">Website UI/UX Designing using ChatGPT</p>
+              <p class="cert-card-desc">AI-assisted design workflows, prompting for UI/UX, and rapid prototype iteration.</p>
+              <div class="cert-card-footer"><span class="cert-card-year">2025</span><span class="cert-card-verify">Verify ↗</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="footer-main">
+    <div class="container">
+      <div class="footer-cta-row">
+        <div class="footer-cta-left">
+          <span class="footer-cta-eyebrow">Let's Connect</span>
+          <h2 class="footer-cta-heading">Got a project? <span>Let's build.</span></h2>
+        </div>
+        <a href="contact.html" class="footer-cta-btn">Start a Conversation →</a>
+      </div>
+      <div class="footer-links-row">
+        <div>
+          <div class="footer-brand-new">
+            <img src="assets/images/rl-logo-transparent.png" alt="RL" class="footer-logo-img"/>
+            <span class="footer-name">Rhein Lacson</span>
+          </div>
+          <p class="footer-desc">IT Student &amp; Front-End Developer at Holy Angel University, Philippines. Building fast, responsive, and purposeful web experiences.</p>
+        </div>
+        <div>
+          <span class="footer-col-title">Navigate</span>
+          <nav class="footer-nav" aria-label="Footer navigation">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="projects.html">Projects</a>
+            <a href="resume.html">Resume</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact.html">Contact</a>
+          </nav>
+        </div>
+        <div class="footer-connect">
+          <span class="footer-col-title">Connect</span>
+          <div class="footer-socials">
+            <a href="https://github.com/rehein16" target="_blank" rel="noopener" class="footer-social">GitHub</a>
+            <a href="https://linkedin.com/in/rheinlacson" target="_blank" rel="noopener" class="footer-social">LinkedIn</a>
+            <a href="mailto:rfmlacson.16@gmail.com" class="footer-social">rfmlacson.16@gmail.com</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span class="footer-copy">© 2026 · All rights reserved. Built with purpose.</span>
+        <span class="footer-tagline">"Continuous Improvement. Relentless."</span>
+      </div>
+    </div>
+  </div>
+</footer>
+<script src="js/script.js"></script>
+<canvas class="stars-canvas" id="starsCanvas"></canvas>
+<script src="js/sky.js"></script>
+</body>
+</html>
