@@ -1,5 +1,5 @@
-# Rheinel Fred M. Lacson — Portfolio v1.0
-**Front End Developer · Holy Angel University · Philippines**
+# Rheinel Fred M. Lacson — Portfolio 
+Live Website: https://rl-rhein-lacson.netlify.app/
 
 ---
 
