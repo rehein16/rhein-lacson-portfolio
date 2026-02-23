@@ -1,5 +1,5 @@
 # Rheinel Fred M. Lacson — Portfolio 
-Live Website: https://rl-rhein-lacson.netlify.app/
+Live Website: https://rheinlacson.netlify.app/
 
 ---
 
