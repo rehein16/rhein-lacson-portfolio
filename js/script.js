@@ -276,15 +276,15 @@ document.querySelectorAll('a[href]').forEach(function (link) {
   let current = 0;
   let isAnimating = false;
 
-  // Project data for the info panel
+  // Project data — order matches HTML card order (index 0 = bottom card, last = top card)
   const projects = [
     {
-      category: 'Disaster Relief · Donation Platform',
-      title: 'AID4ODETTE',
-      desc: 'A responsive donation portal built to support communities devastated by Typhoon Rai. Designed for high-impact calls to action with accessible information architecture.',
+      category: 'Food & Beverage · Restaurant Website',
+      title: 'WINGS 2 GO',
+      desc: 'A vibrant, fully responsive restaurant website featuring an interactive menu, online ordering flow, and bold visual identity for a local wing spot.',
       stack: ['HTML5', 'CSS3', 'JavaScript'],
-      live: 'https://rehein16.github.io/Aid4Odette---Phillipines/',
-      github: 'https://github.com/rehein16/Aid4Odette---Phillipines'
+      live: 'https://rehein16.github.io/Wings-2-Go/',
+      github: 'https://github.com/rehein16/Wings-2-Go'
     },
     {
       category: 'E-Commerce · Luxury Perfume · Group Project',
@@ -295,12 +295,12 @@ document.querySelectorAll('a[href]').forEach(function (link) {
       github: 'https://github.com/Jz100505/Velour'
     },
     {
-      category: 'Food & Beverage · Restaurant Website',
-      title: 'WINGS 2 GO',
-      desc: 'A vibrant, fully responsive restaurant website featuring an interactive menu, online ordering flow, and bold visual identity for a local wing spot.',
+      category: 'Disaster Relief · Donation Platform',
+      title: 'AID4ODETTE',
+      desc: 'A responsive donation portal built to support communities devastated by Typhoon Rai. Designed for high-impact calls to action with accessible information architecture.',
       stack: ['HTML5', 'CSS3', 'JavaScript'],
-      live: 'https://rehein16.github.io/Wings-2-Go/',
-      github: 'https://github.com/rehein16/Wings-2-Go'
+      live: 'https://rehein16.github.io/Aid4Odette---Phillipines/',
+      github: 'https://github.com/rehein16/Aid4Odette---Phillipines'
     }
   ];
 
