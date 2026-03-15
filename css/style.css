@@ -2321,3 +2321,10 @@
   background: linear-gradient(to bottom, var(--black) 0%, transparent 100%);
   pointer-events: none; z-index: 1;
 }
+/* ── Mike App Mobile Gallery ── */
+.mike-gallery .gallery-track img {
+  object-fit: contain !important;
+  object-position: center !important;
+  background: #f0f0f0;
+}
+.mike-gallery { background: #f0f0f0 !important; }
